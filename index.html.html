@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RC Spot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      background: #000;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #e50914;
+    }
+    header a img {
+      max-width: 120px;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #e50914;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #111;
+      padding: 1rem 0;
+      border-bottom: 1px solid #444;
+    }
+    nav a {
+      color: #e50914;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .section {
+      display: none;
+      padding: 3rem 5%;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    .section.active {
+      display: block;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .product {
+      background: #111;
+      border: 1px solid #e50914;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .product:hover {
+      transform: scale(1.03);
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .product h2 {
+      color: #fff;
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+    }
+    .product p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      color: #e50914;
+    }
+    .product button {
+      background: #e50914;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .cart-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .cart {
+      position: fixed;
+      top: 5rem;
+      right: 1rem;
+      background: #222;
+      color: #fff;
+      border: 1px solid #e50914;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+    }
+    .cart-item {
+      margin-bottom: 1rem;
+    }
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .payment-icons img {
+      width: 60px;
+      height: auto;
+      filter: grayscale(1) brightness(2);
+    }
+    footer {
+      background: #000;
+      color: #888;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-top: 1px solid #e50914;
+    }
+    .payment-section {
+      background: #111;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      border-radius: 12px;
+    }
+    .payment-section h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #e50914;
+    }
+    .payment-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .payment-section input {
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    .payment-section button {
+      background: #e50914;
+      color: #fff;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    a {
+      color: #e50914;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a href="#products"><img src="logo.png" alt="RC Spot Logo"></a>
+  <h1>RC Spot</h1>
+</header>
+
+
+  <button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+  <div class="cart" id="cart">
+    <h3>Your Cart</h3>
+    <div id="cart-items"></div>
+    <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+    <button onclick="showSection('payment')">Proceed to Pay</button>
+  </div>
+
+  <nav>
+    <a href="#" onclick="showSection('products')">Products</a>
+    <a href="#" onclick="showSection('faq')">FAQ</a>
+    <a href="#" onclick="showSection('help')">Help</a>
+    <a href="#" onclick="showSection('comments')">Comments</a>
+    <a href="#" onclick="showSection('payment')">Payment</a>
+  </nav>
+
+  <div class="section active" id="products">
+    <h2>Our RC Cars & Trucks</h2>
+    <div class="products">
+      <div class="product"><img src="product1.jpeg" alt="RC Car 1"><h2>Monster Rock Crawler</h2><p>₹3999</p><button onclick="addToCart('Monster Rock Crawler', 3999)">Add to Cart</button></div>
+      <div class="product"><img src="product2.jpeg" alt="RC Car 2"><h2>Thunder Bolt Racer</h2><p>₹4299</p><button onclick="addToCart('Thunder Bolt Racer', 4299)">Add to Cart</button></div>
+      <div class="product"><img src="product3.jpeg" alt="RC Car 3"><h2>Bezgar Truggy</h2><p>₹6499</p><button onclick="addToCart('Bezgar Truggy', 6499)">Add to Cart</button></div>
+      <div class="product"><img src="product4.jpeg" alt="RC Car 4"><h2>6-Wheel Climber Blue</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Blue', 5299)">Add to Cart</button></div>
+      <div class="product"><img src="product5.jpeg" alt="RC Car 5"><h2>6-Wheel Climber Orange</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Orange', 5299)">Add to Cart</button></div>
+      <div class="product"><img src="product6.jpeg" alt="RC Car 6"><h2>Offroad Pickup Truck</h2><p>₹4899</p><button onclick="addToCart('Offroad Pickup Truck', 4899)">Add to Cart</button></div>
+      <div class="product"><img src="product7.jpeg" alt="RC Car 7"><h2>Spirit Speed Monster</h2><p>₹6999</p><button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button></div>
+    </div>
+  </div>
+
+  <div class="section" id="faq">
+    <h3>Frequently Asked Questions</h3>
+    <p><strong>Q:</strong> What is the delivery time?</p>
+    <p><strong>A:</strong> Delivery takes 3–7 business days.</p>
+    <p><strong>Q:</strong> Do you provide warranty?</p>
+    <p><strong>A:</strong> Yes, 6-month warranty for manufacturing defects.</p>
+  </div>
+
+  <div class="section" id="help">
+    <h3>Need Help?</h3>
+    <p>Email us at: <a href="mailto:gurudhaya2536@gmail.com">gurudhaya2536@gmail.com</a></p>
+    <p>Call us: <a href="tel:6352417891">+91 6352417891</a></p>
+    <p>For product or order queries, contact us via phone or email above.</p>
+  </div>
+
+  <div class="section" id="comments">
+    <h3>User Comments</h3>
+    <p>“Amazing cars, top speed is thrilling!” – Rahul</p>
+    <p>“Good packaging and fast delivery.” – Neha</p>
+  </div>
+
+  <div class="section" id="payment">
+    <div class="payment-section">
+      <h3>Payment Details</h3>
+      <form onsubmit="alert('Sample payment submitted!'); return false;">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Card Number" required />
+        <input type="text" placeholder="Expiry Date (MM/YY)" required />
+        <input type="text" placeholder="CVV" required />
+        <button type="submit">Submit Payment</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="payment-icons">
+    <img src="gpay.png" alt="GPay">
+    <img src="phonepe.png" alt="PhonePe">
+    <img src="paypal.png" alt="PayPal">
+    <img src="card.png" alt="Debit/Credit">
+  </div>
+
+  <footer>
+    &copy; 2025 RC Spot. All rights reserved. Social media links coming soon.
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+
+    const cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cart-items');
+      const cartCount = document.getElementById('cart-count');
+      const cartTotal = document.getElementById('cart-total');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+        cartItems.appendChild(div);
+      });
+      cartCount.textContent = cart.length;
+      cartTotal.textContent = total;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function toggleCart() {
+      const cartBox = document.getElementById('cart');
+      cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
