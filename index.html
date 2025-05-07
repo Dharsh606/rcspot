@@ -182,6 +182,28 @@
     a {
       color: #e50914;
     }
+
+    /* Video overlay style */
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .video-overlay video {
+      width: 80%;
+      height: auto;
+      max-width: 800px;
+      border-radius: 10px;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -189,11 +211,18 @@
   </style>
 </head>
 <body>
-<header>
-  <a href="#products"><img src="images/logo.png" alt="RC Spot Logo"></a>
-  <h1>RC Spot</h1>
-</header>
+  <!-- Video overlay -->
+  <div id="video-overlay" class="video-overlay">
+    <video id="intro-video" autoplay>
+      <source src="images/intro-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
+  <header>
+    <a href="#products"><img src="images/logo.png" alt="RC Spot Logo"></a>
+    <h1>RC Spot</h1>
+  </header>
 
   <button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
   <div class="cart" id="cart">
@@ -271,6 +300,14 @@
   </footer>
 
   <script>
+    // Hide video overlay after the video ends
+    const video = document.getElementById('intro-video');
+    const overlay = document.getElementById('video-overlay');
+
+    video.onended = function() {
+      overlay.style.display = 'none'; // Hide the video overlay
+    };
+
     function showSection(id) {
       document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
