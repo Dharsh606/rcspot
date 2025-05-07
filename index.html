@@ -300,55 +300,59 @@
   </footer>
 
   <script>
-    // Hide video overlay after the video ends
-    const video = document.getElementById('intro-video');
-    const overlay = document.getElementById('video-overlay');
+  const video = document.getElementById('intro-video');
+  const overlay = document.getElementById('video-overlay');
 
-    video.onended = function() {
-      overlay.style.display = 'none'; // Hide the video overlay
-    };
+  // Force play even if autoplay is blocked
+  video.muted = true;
+  video.play().catch((err) => {
+    console.warn('Autoplay blocked:', err);
+    overlay.style.display = 'none';
+  });
 
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
-    }
+  video.onended = function () {
+    overlay.style.display = 'none'; // Hide the video overlay
+  };
 
-    const cart = [];
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      updateCartUI();
-    }
+  const cart = [];
 
-    function updateCartUI() {
-      const cartItems = document.getElementById('cart-items');
-      const cartCount = document.getElementById('cart-count');
-      const cartTotal = document.getElementById('cart-total');
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCartUI();
+  }
 
-      cartItems.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
-        cartItems.appendChild(div);
-      });
-      cartCount.textContent = cart.length;
-      cartTotal.textContent = total;
-    }
+  function updateCartUI() {
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += item.price;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+      cartItems.appendChild(div);
+    });
+    cartCount.textContent = cart.length;
+    cartTotal.textContent = total;
+  }
 
-    function toggleCart() {
-      const cartBox = document.getElementById('cart');
-      cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
-</body>
-</html>
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function toggleCart() {
+    const cartBox = document.getElementById('cart');
+    cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
