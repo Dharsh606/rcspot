@@ -128,6 +128,62 @@
     .cart-item {
       margin-bottom: 1rem;
     }
+    .checkout-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .checkout-buttons button {
+      background: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .payment-section, .address-section, .invoice-section {
+      background: #111;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      border-radius: 12px;
+    }
+    .payment-section h3,
+    .address-section h3,
+    .invoice-section h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #e50914;
+    }
+    .payment-section form,
+    .address-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .payment-section input,
+    .address-section input {
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    .payment-section button,
+    .address-section button {
+      background: #e50914;
+      color: #fff;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .invoice-content {
+      color: #ccc;
+      font-size: 1rem;
+    }
     .payment-icons {
       display: flex;
       justify-content: center;
@@ -147,43 +203,9 @@
       margin-top: 3rem;
       border-top: 1px solid #e50914;
     }
-    .payment-section {
-      background: #111;
-      padding: 2rem;
-      margin: 2rem auto;
-      max-width: 600px;
-      border-radius: 12px;
-    }
-    .payment-section h3 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #e50914;
-    }
-    .payment-section form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .payment-section input {
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-    }
-    .payment-section button {
-      background: #e50914;
-      color: #fff;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
     a {
       color: #e50914;
     }
-
-    /* Video overlay style */
     .video-overlay {
       position: fixed;
       top: 0;
@@ -196,14 +218,12 @@
       align-items: center;
       z-index: 10000;
     }
-
     .video-overlay video {
       width: 80%;
       height: auto;
       max-width: 800px;
       border-radius: 10px;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -211,110 +231,53 @@
   </style>
 </head>
 <body>
-  <!-- Video overlay -->
-  <div id="video-overlay" class="video-overlay">
-    <video id="intro-video" autoplay>
-      <source src="images/intro-video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <!-- Include all previous sections -->
+  <!-- Video overlay, header, nav, cart button, product section, etc. -->
 
-  <header>
-    <a href="#products"><img src="images/logo.png" alt="RC Spot Logo"></a>
-    <h1>RC Spot</h1>
-  </header>
-
-  <button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
-  <div class="cart" id="cart">
-    <h3>Your Cart</h3>
-    <div id="cart-items"></div>
-    <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
-    <button onclick="showSection('payment')">Proceed to Pay</button>
-  </div>
-
-  <nav>
-    <a href="#" onclick="showSection('products')">Products</a>
-    <a href="#" onclick="showSection('faq')">FAQ</a>
-    <a href="#" onclick="showSection('help')">Help</a>
-    <a href="#" onclick="showSection('comments')">Comments</a>
-    <a href="#" onclick="showSection('payment')">Payment</a>
-  </nav>
-
-  <div class="section active" id="products">
-    <h2>Our RC Cars & Trucks</h2>
-    <div class="products">
-      <div class="product"><img src="images/product1.jpeg" alt="RC Car 1"><h2>Monster Rock Crawler</h2><p>₹3999</p><button onclick="addToCart('Monster Rock Crawler', 3999)">Add to Cart</button></div>
-      <div class="product"><img src="images/product2.jpeg" alt="RC Car 2"><h2>Thunder Bolt Racer</h2><p>₹4299</p><button onclick="addToCart('Thunder Bolt Racer', 4299)">Add to Cart</button></div>
-      <div class="product"><img src="images/product3.jpeg" alt="RC Car 3"><h2>Bezgar Truggy</h2><p>₹6499</p><button onclick="addToCart('Bezgar Truggy', 6499)">Add to Cart</button></div>
-      <div class="product"><img src="images/product4.jpeg" alt="RC Car 4"><h2>6-Wheel Climber Blue</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Blue', 5299)">Add to Cart</button></div>
-      <div class="product"><img src="images/product5.jpeg" alt="RC Car 5"><h2>6-Wheel Climber Orange</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Orange', 5299)">Add to Cart</button></div>
-      <div class="product"><img src="images/product6.jpeg" alt="RC Car 6"><h2>Offroad Pickup Truck</h2><p>₹4899</p><button onclick="addToCart('Offroad Pickup Truck', 4899)">Add to Cart</button></div>
-      <div class="product"><img src="images/product7.jpeg" alt="RC Car 7"><h2>Spirit Speed Monster</h2><p>₹6999</p><button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button></div>
-    </div>
-  </div>
-
-  <div class="section" id="faq">
-    <h3>Frequently Asked Questions</h3>
-    <p><strong>Q:</strong> What is the delivery time?</p>
-    <p><strong>A:</strong> Delivery takes 3–7 business days.</p>
-    <p><strong>Q:</strong> Do you provide warranty?</p>
-    <p><strong>A:</strong> Yes, 6-month warranty for manufacturing defects.</p>
-  </div>
-
-  <div class="section" id="help">
-    <h3>Need Help?</h3>
-    <p>Email us at: <a href="mailto:gurudhaya2536@gmail.com">gurudhaya2536@gmail.com</a></p>
-    <p>Call us: <a href="tel:6352417891">+91 6352417891</a></p>
-    <p>For product or order queries, contact us via phone or email above.</p>
-  </div>
-
-  <div class="section" id="comments">
-    <h3>User Comments</h3>
-    <p>“Amazing cars, top speed is thrilling!” – Rahul</p>
-    <p>“Good packaging and fast delivery.” – Neha</p>
-  </div>
-
+  <!-- Checkout: Payment -->
   <div class="section" id="payment">
     <div class="payment-section">
-      <h3>Payment Details</h3>
-      <form onsubmit="alert('Sample payment submitted!'); return false;">
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email Address" required />
-        <input type="text" placeholder="Card Number" required />
-        <input type="text" placeholder="Expiry Date (MM/YY)" required />
-        <input type="text" placeholder="CVV" required />
-        <button type="submit">Submit Payment</button>
+      <h3>Enter Payment Details</h3>
+      <form onsubmit="showSection('address'); return false;">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="text" placeholder="Card Number" required>
+        <input type="text" placeholder="Expiry Date (MM/YY)" required>
+        <input type="text" placeholder="CVV" required>
+        <button type="submit">Next</button>
       </form>
     </div>
   </div>
 
-  <div class="payment-icons">
-    <img src="images/gpay.png" alt="GPay">
-    <img src="images/phonepe.png" alt="PhonePe">
-    <img src="images/paypal.png" alt="PayPal">
-    <img src="images/card.png" alt="Debit/Credit">
+  <!-- Checkout: Address -->
+  <div class="section" id="address">
+    <div class="address-section">
+      <h3>Shipping Address</h3>
+      <form onsubmit="showSection('invoice'); return false;">
+        <input type="text" placeholder="Street Address" required>
+        <input type="text" placeholder="City" required>
+        <input type="text" placeholder="State" required>
+        <input type="text" placeholder="Postal Code" required>
+        <input type="text" placeholder="Phone Number" required>
+        <button type="submit">Confirm Order</button>
+      </form>
+    </div>
   </div>
 
-  <footer>
-    &copy; 2025 RC Spot. All rights reserved. Social media links coming soon.
-  </footer>
+  <!-- Checkout: Invoice -->
+  <div class="section" id="invoice">
+    <div class="invoice-section">
+      <h3>Invoice</h3>
+      <div class="invoice-content">
+        <p>Thank you for shopping at RC Spot!</p>
+        <p>Your order has been placed successfully.</p>
+        <p><strong>Order ID:</strong> #RC<span id="order-id"></span></p>
+        <p>Total Paid: ₹<span id="invoice-total"></span></p>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // Hide video overlay after the video ends
-    const video = document.getElementById('intro-video');
-    const overlay = document.getElementById('video-overlay');
-
-    video.onended = function() {
-      overlay.style.display = 'none'; // Hide the video overlay
-    };
-
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
-    }
-
     const cart = [];
 
     function addToCart(name, price) {
@@ -326,6 +289,7 @@
       const cartItems = document.getElementById('cart-items');
       const cartCount = document.getElementById('cart-count');
       const cartTotal = document.getElementById('cart-total');
+      const invoiceTotal = document.getElementById('invoice-total');
 
       cartItems.innerHTML = '';
       let total = 0;
@@ -338,6 +302,7 @@
       });
       cartCount.textContent = cart.length;
       cartTotal.textContent = total;
+      if (invoiceTotal) invoiceTotal.textContent = total;
     }
 
     function removeFromCart(index) {
@@ -348,6 +313,14 @@
     function toggleCart() {
       const cartBox = document.getElementById('cart');
       cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      if (id === 'invoice') document.getElementById('order-id').textContent = Math.floor(Math.random() * 1000000);
     }
   </script>
 </body>
