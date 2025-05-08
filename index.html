@@ -23,13 +23,13 @@
       max-width: 120px;
       margin-bottom: 1rem;
       animation: fadeIn 1s ease-in-out;
+      filter: none; /* Added this to remove any grayscale or color manipulation */
     }
     header h1 {
       margin: 0;
       font-size: 2.5rem;
       font-weight: 600;
       color: #e50914;
-      font-family: 'Bangers', sans-serif;
     }
     nav {
       display: flex;
@@ -226,6 +226,7 @@
   </header>
 
   <button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+
   <div class="cart" id="cart">
     <h3>Your Cart</h3>
     <div id="cart-items"></div>
@@ -288,10 +289,9 @@
       </form>
     </div>
     <div class="payment-icons">
-      <img src="images/paypal.png" alt="PayPal">
-      <img src="images/gpay.png" alt="Gpay">
-      <img src="images/phonepe.png" alt="Phonepe">
-      <img src="images/card.png" alt="Card">
+      <img src="images/paypal-icon.png" alt="PayPal">
+      <img src="images/visa-icon.png" alt="Visa">
+      <img src="images/mastercard-icon.png" alt="MasterCard">
     </div>
   </div>
 
@@ -391,5 +391,6 @@
       document.getElementById(id).classList.add('active');
     }
   </script>
+
 </body>
 </html>
