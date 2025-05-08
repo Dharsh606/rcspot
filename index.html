@@ -231,8 +231,73 @@
   </style>
 </head>
 <body>
+<<<<<<< HEAD
   <!-- Include all previous sections -->
   <!-- Video overlay, header, nav, cart button, product section, etc. -->
+=======
+  <!-- Video overlay -->
+  <div id="video-overlay" class="video-overlay">
+    <video id="intro-video" autoplay muted playsinline preload="auto">
+  <source src="images/intro-video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+  </div>
+
+  <header>
+    <a href="#products"><img src="images/logo.png" alt="RC Spot Logo"></a>
+    <h1>RC Spot</h1>
+  </header>
+
+  <button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+  <div class="cart" id="cart">
+    <h3>Your Cart</h3>
+    <div id="cart-items"></div>
+    <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+    <button onclick="showSection('payment')">Proceed to Pay</button>
+  </div>
+
+  <nav>
+    <a href="#" onclick="showSection('products')">Products</a>
+    <a href="#" onclick="showSection('faq')">FAQ</a>
+    <a href="#" onclick="showSection('help')">Help</a>
+    <a href="#" onclick="showSection('comments')">Comments</a>
+    <a href="#" onclick="showSection('payment')">Payment</a>
+  </nav>
+
+  <div class="section active" id="products">
+    <h2>Our RC Cars & Trucks</h2>
+    <div class="products">
+      <div class="product"><img src="images/product1.jpeg" alt="RC Car 1"><h2>Monster Rock Crawler</h2><p>₹3999</p><button onclick="addToCart('Monster Rock Crawler', 3999)">Add to Cart</button></div>
+      <div class="product"><img src="images/product2.jpeg" alt="RC Car 2"><h2>Thunder Bolt Racer</h2><p>₹4299</p><button onclick="addToCart('Thunder Bolt Racer', 4299)">Add to Cart</button></div>
+      <div class="product"><img src="images/product3.jpeg" alt="RC Car 3"><h2>Bezgar Truggy</h2><p>₹6499</p><button onclick="addToCart('Bezgar Truggy', 6499)">Add to Cart</button></div>
+      <div class="product"><img src="images/product4.jpeg" alt="RC Car 4"><h2>6-Wheel Climber Blue</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Blue', 5299)">Add to Cart</button></div>
+      <div class="product"><img src="images/product5.jpeg" alt="RC Car 5"><h2>6-Wheel Climber Orange</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Orange', 5299)">Add to Cart</button></div>
+      <div class="product"><img src="images/product6.jpeg" alt="RC Car 6"><h2>Offroad Pickup Truck</h2><p>₹4899</p><button onclick="addToCart('Offroad Pickup Truck', 4899)">Add to Cart</button></div>
+      <div class="product"><img src="images/product7.jpeg" alt="RC Car 7"><h2>Spirit Speed Monster</h2><p>₹6999</p><button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button></div>
+    </div>
+  </div>
+
+  <div class="section" id="faq">
+    <h3>Frequently Asked Questions</h3>
+    <p><strong>Q:</strong> What is the delivery time?</p>
+    <p><strong>A:</strong> Delivery takes 3–7 business days.</p>
+    <p><strong>Q:</strong> Do you provide warranty?</p>
+    <p><strong>A:</strong> Yes, 6-month warranty for manufacturing defects.</p>
+  </div>
+
+  <div class="section" id="help">
+    <h3>Need Help?</h3>
+    <p>Email us at: <a href="mailto:gurudhaya2536@gmail.com">gurudhaya2536@gmail.com</a></p>
+    <p>Call us: <a href="tel:6352417891">+91 6352417891</a></p>
+    <p>For product or order queries, contact us via phone or email above.</p>
+  </div>
+
+  <div class="section" id="comments">
+    <h3>User Comments</h3>
+    <p>“Amazing cars, top speed is thrilling!” – Rahul</p>
+    <p>“Good packaging and fast delivery.” – Neha</p>
+  </div>
+>>>>>>> 854b2815e65f01d6e79f7727b86f49f03a0b2de4
 
   <!-- Checkout: Payment -->
   <div class="section" id="payment">
@@ -277,14 +342,36 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <script>
     const cart = [];
+=======
+ <script>
+  const video = document.getElementById('intro-video');
+  const overlay = document.getElementById('video-overlay');
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      updateCartUI();
-    }
+  // Force play even if autoplay is blocked
+  video.muted = true;
+  video.play().catch((err) => {
+    console.warn('Autoplay blocked:', err);
+    overlay.style.display = 'none';
+  });
 
+  video.onended = function () {
+    overlay.style.display = 'none'; // Hide the video overlay
+  };
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+>>>>>>> 854b2815e65f01d6e79f7727b86f49f03a0b2de4
+
+  const cart = [];
+
+<<<<<<< HEAD
     function updateCartUI() {
       const cartItems = document.getElementById('cart-items');
       const cartCount = document.getElementById('cart-count');
@@ -304,12 +391,32 @@
       cartTotal.textContent = total;
       if (invoiceTotal) invoiceTotal.textContent = total;
     }
+=======
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCartUI();
+  }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
+  function updateCartUI() {
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+>>>>>>> 854b2815e65f01d6e79f7727b86f49f03a0b2de4
 
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += item.price;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+      cartItems.appendChild(div);
+    });
+    cartCount.textContent = cart.length;
+    cartTotal.textContent = total;
+  }
+
+<<<<<<< HEAD
     function toggleCart() {
       const cartBox = document.getElementById('cart');
       cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
@@ -325,3 +432,15 @@
   </script>
 </body>
 </html>
+=======
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function toggleCart() {
+    const cartBox = document.getElementById('cart');
+    cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+>>>>>>> 854b2815e65f01d6e79f7727b86f49f03a0b2de4
