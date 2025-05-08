@@ -283,45 +283,41 @@
         <input type="text" placeholder="Card Number" required />
         <input type="text" placeholder="Expiry Date (MM/YY)" required />
         <input type="text" placeholder="CVV" required />
-        <button type="submit">Submit Payment</button>
+        <button type="submit">Pay ₹<span id="cart-total">0</span></button>
       </form>
+    </div>
+    <div class="payment-icons">
+      <img src="images/paypal-icon.png" alt="PayPal">
+      <img src="images/visa-icon.png" alt="Visa">
+      <img src="images/mastercard-icon.png" alt="MasterCard">
     </div>
   </div>
 
-  <div class="payment-icons">
-    <img src="images/gpay.png" alt="GPay">
-    <img src="images/phonepe.png" alt="PhonePe">
-    <img src="images/paypal.png" alt="PayPal">
-    <img src="images/card.png" alt="Debit/Credit">
-  </div>
-
   <footer>
-    &copy; 2025 RC Spot. All rights reserved. Social media links coming soon.
+    <p>&copy; 2025 RC Spot | All Rights Reserved.</p>
   </footer>
 
   <script>
-    // Hide video overlay after the video ends
-    const video = document.getElementById('intro-video');
-    const overlay = document.getElementById('video-overlay');
+    // Initialize cart from sessionStorage
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
-    video.onended = function() {
-      overlay.style.display = 'none'; // Hide the video overlay
-    };
-
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
+    function saveCart() {
+      sessionStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    const cart = [];
-
+    // Add item to cart or increase quantity if already added
     function addToCart(name, price) {
-      cart.push({ name, price });
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      saveCart();
       updateCartUI();
     }
 
+    // Update the cart UI with item details, subtotal, and total
     function updateCartUI() {
       const cartItems = document.getElementById('cart-items');
       const cartCount = document.getElementById('cart-count');
@@ -329,26 +325,54 @@
 
       cartItems.innerHTML = '';
       let total = 0;
+
       cart.forEach((item, index) => {
-        total += item.price;
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+
         const div = document.createElement('div');
         div.className = 'cart-item';
-        div.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+        div.innerHTML = `
+          <strong>${item.name}</strong><br>
+          ₹${item.price} × ${item.qty} = ₹${subtotal}
+          <br>
+          <button onclick="changeQty(${index}, -1)">−</button>
+          <button onclick="changeQty(${index}, 1)">+</button>
+          <button onclick="removeFromCart(${index})">Remove</button>
+          <hr>
+        `;
         cartItems.appendChild(div);
       });
-      cartCount.textContent = cart.length;
+
+      cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
       cartTotal.textContent = total;
     }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
+    // Change the quantity of an item in the cart
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
       updateCartUI();
     }
 
+    // Remove an item from the cart
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      saveCart();
+      updateCartUI();
+    }
+
+    // Toggle the visibility of the cart
     function toggleCart() {
       const cartBox = document.getElementById('cart');
       cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
     }
+
+    // Initial render of the cart
+    updateCartUI();
   </script>
 </body>
 </html>
