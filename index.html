@@ -185,6 +185,38 @@
       color: #e50914;
     }
 
+    .promo-banner {
+      background-color: #e50914;
+      color: #fff;
+      padding: 1rem;
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 250px;
+      text-align: center;
+    }
+
+    .sidebar-right {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 250px;
+      padding: 2rem;
+      background-color: #333;
+      color: #fff;
+    }
+
+    .product-ad {
+      margin-bottom: 2rem;
+    }
+
+    .product-ad img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
     /* Video overlay style */
     .video-overlay {
       position: fixed;
@@ -254,6 +286,19 @@
       <div class="product"><img src="images/product6.jpeg" alt="RC Car 6"><h2>Offroad Pickup Truck</h2><p>₹4899</p><button onclick="addToCart('Offroad Pickup Truck', 4899)">Add to Cart</button></div>
       <div class="product"><img src="images/product7.jpeg" alt="RC Car 7"><h2>Spirit Speed Monster</h2><p>₹6999</p><button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button></div>
     </div>
+  </div>
+
+  <aside class="sidebar-right">
+    <h2>Featured Products</h2>
+    <div class="product-ad">
+      <img src="images/product1.jpg" alt="Featured Product">
+      <p>Best Seller: Monster Rock Crawler</p>
+      <a href="#">Buy Now</a>
+    </div>
+  </aside>
+
+  <div class="promo-banner">
+    <p>Get 20% Off on all RC Cars this Summer! Limited Time Offer!</p>
   </div>
 
   <div class="section" id="faq">
