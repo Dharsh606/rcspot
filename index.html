@@ -22,6 +22,8 @@
     header a img {
       max-width: 120px;
       margin-bottom: 1rem;
+      animation: fadeIn 1s ease-in-out;
+      filter: none; /* Added this to remove any grayscale or color manipulation */
     }
     header h1 {
       margin: 0;
@@ -50,6 +52,7 @@
     .section {
       display: none;
       padding: 3rem 5%;
+      animation: fadeIn 0.6s ease-in-out;
     }
     .section.active {
       display: block;
@@ -201,6 +204,11 @@
       max-width: 800px;
       border-radius: 10px;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -281,10 +289,10 @@
       </form>
     </div>
     <div class="payment-icons">
-      <img src="images/paypal.png" alt="PayPal">
-      <img src="images/gpay.png" alt="Gpay">
-      <img src="images/card.png" alt="Card">
+      <img src="images/gpay.png" alt="gpay">
       <img src="images/phonepe.png" alt="phonepe">
+      <img src="images/card.png" alt="Card">
+      <img src="images/paypal.png" alt="paypal">
     </div>
   </div>
 
@@ -293,61 +301,188 @@
   </footer>
 
   <script>
-    const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    // Initialize cart from sessionStorage
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
+    function saveCart() {
+      sessionStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    function toggleCart() {
-      const cartElement = document.getElementById('cart');
-      cartElement.style.display = cartElement.style.display === 'block' ? 'none' : 'block';
-      updateCart();
-    }
-
+    // Add item to cart or increase quantity if already added
     function addToCart(name, price) {
-      cart.push({ name, price });
-      sessionStorage.setItem('cart', JSON.stringify(cart));
-      updateCart();
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      saveCart();
+      updateCartUI();
     }
 
-    function updateCart() {
+    // Update the cart UI with item details, subtotal, and total
+    function updateCartUI() {
+      const cartItems = document.getElementById('cart-items');
       const cartCount = document.getElementById('cart-count');
       const cartTotal = document.getElementById('cart-total');
-      const cartItems = document.getElementById('cart-items');
-      
-      cartCount.textContent = cart.length;
-      
-      let total = 0;
+
       cartItems.innerHTML = '';
-      cart.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('cart-item');
-        itemElement.textContent = `${item.name} - ₹${item.price}`;
-        cartItems.appendChild(itemElement);
-        total += item.price;
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <strong>${item.name}</strong><br>
+          ₹${item.price} × ${item.qty} = ₹${subtotal}
+          <br>
+          <button onclick="changeQty(${index}, -1)">−</button>
+          <button onclick="changeQty(${index}, 1)">+</button>
+          <button onclick="removeFromCart(${index})">Remove</button>
+          <hr>
+        `;
+        cartItems.appendChild(div);
       });
 
+      cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
       cartTotal.textContent = total;
     }
 
-    function showCheckoutSummary() {
-      showSection('payment');
+    // Change the quantity of an item in the cart
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      updateCartUI();
     }
 
-    // Video Intro Skipping
+    // Remove an item from the cart
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      saveCart();
+      updateCartUI();
+    }
+
+    // Toggle the visibility of the cart
+    function toggleCart() {
+      const cartBox = document.getElementById('cart');
+      cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Initial render of the cart
+    updateCartUI();
+
+    // JavaScript to remove the video overlay when the video ends
+    const video = document.getElementById('intro-video');
     const videoOverlay = document.getElementById('video-overlay');
-    const introVideo = document.getElementById('intro-video');
-    introVideo.addEventListener('ended', () => {
+
+    video.addEventListener('ended', function() {
       videoOverlay.style.display = 'none';
     });
 
-    // Automatically hide video overlay after 10 seconds
-    setTimeout(() => {
-      videoOverlay.style.display = 'none';
-    }, 10000);
+    // Show the section based on the clicked nav link
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
   </script>
+  <!-- 🔻 START: Extra Checkout Sections -->
+<div class="section" id="checkout" style="display:none;">
+  <div class="payment-section">
+    <h3>Order Summary</h3>
+    <div id="order-summary"></div>
+    <p><strong>Total: ₹<span id="summary-total">0</span></strong></p>
+    <button onclick="showSection('payment')">Continue to Payment</button>
+  </div>
+</div>
+
+<div class="section" id="invoice" style="display:none;">
+  <div class="payment-section">
+    <h3>Order Confirmed ✅</h3>
+    <p>Thank you for shopping at RC Spot!</p>
+    <div id="invoice-details"></div>
+    <p><strong>Total Paid: ₹<span id="invoice-total">0</span></strong></p>
+    <p>You will receive an email with your invoice shortly.</p>
+    <button onclick="location.reload()">Return to Home</button>
+  </div>
+</div>
+
+<!-- 🔻 Shipping Form Inside Payment Section (injected script will place it) -->
+<form id="shipping-form" style="display:none; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+  <input type="text" placeholder="Full Name" required />
+  <input type="text" placeholder="Phone Number" required />
+  <input type="text" placeholder="Street Address" required />
+  <input type="text" placeholder="City" required />
+  <input type="text" placeholder="State" required />
+  <input type="text" placeholder="Postal Code" required />
+  <input type="text" placeholder="Country" required />
+</form>
+<!-- 🔺 END: Extra Checkout Sections -->
+
+<!-- 🔧 START: JS Script -->
+<script>
+  // Cart array must already exist
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+
+    // Show shipping form when in payment section
+    if (id === 'payment') {
+      const form = document.getElementById('shipping-form');
+      const paymentSection = document.querySelector('#payment .payment-section');
+      if (!paymentSection.contains(form)) {
+        paymentSection.insertBefore(form, paymentSection.querySelector('form') || paymentSection.lastChild);
+      }
+      form.style.display = 'flex';
+    }
+  }
+
+  function showCheckoutSummary() {
+    const summary = document.getElementById('order-summary');
+    const totalDisplay = document.getElementById('summary-total');
+    let total = 0;
+    summary.innerHTML = '';
+    cart.forEach(item => {
+      const subtotal = item.price * item.qty;
+      total += subtotal;
+      summary.innerHTML += `<p>${item.name} × ${item.qty} = ₹${subtotal}</p>`;
+    });
+    totalDisplay.textContent = total;
+    showSection('checkout');
+  }
+
+  function showInvoice() {
+    const invoiceBox = document.getElementById('invoice-details');
+    const invoiceTotal = document.getElementById('invoice-total');
+    let total = 0;
+    invoiceBox.innerHTML = '';
+    cart.forEach(item => {
+      const subtotal = item.price * item.qty;
+      total += subtotal;
+      invoiceBox.innerHTML += `<p>${item.name} × ${item.qty} = ₹${subtotal}</p>`;
+    });
+    invoiceTotal.textContent = total;
+    sessionStorage.clear();
+    showSection('invoice');
+  }
+
+  // Bind form submit to invoice
+  window.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#payment .payment-section form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        showInvoice();
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
