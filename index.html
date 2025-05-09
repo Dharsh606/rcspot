@@ -205,64 +205,7 @@
         transform: translateY(-50%);
         opacity: 1;
       }
-    }
-    .sidebar-left {
-      position: fixed;
-      top: 100px;
-      left: 0;
-      width: 250px;
-      background-color: #1a1a1a;
-      color: #fff;
-      padding: 1rem;
-      border-right: 2px solid #e50914;
-      height: calc(100% - 100px);
-      overflow-y: auto;
-      z-index: 999;
-      box-shadow: 2px 0 10px rgba(229, 9, 20, 0.3);
-    }
-
-    .sidebar-left h2 {
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      color: #e50914;
-    }
-
-    .product-ad {
-      margin-bottom: 1.5rem;
-      padding: 0.5rem;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: 10px;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .product-ad:hover {
-      transform: scale(1.03);
-      background: #2a2a2a;
-    }
-
-    .product-ad img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-    }
-
-    .product-ad p {
-      margin: 0.3rem 0;
-      font-size: 0.9rem;
-    }
-
-    .product-ad button {
-      background: #e50914;
-      color: white;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
+    
     /* Video overlay style */
     .video-overlay {
       position: fixed;
@@ -333,23 +276,6 @@
       <div class="product"><img src="images/product7.jpeg" alt="RC Car 7"><h2>Spirit Speed Monster</h2><p>₹6999</p><button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button></div>
     </div>
   </div>
-
-  <aside class="sidebar-left">
-    <h2>Featured Products</h2>
-    <div class="product-ad">
-      <img src="images/product7.jpeg" alt="Featured Product">
-      <p>Spirit Speed Monster</p>
-      <p>₹6999</p>
-      <button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button>
-    </div>
-    <div class="product-ad">
-      <img src="images/product1.jpeg" alt="Featured Product">
-      <p>Monster Rock Crawler</p>
-      <p>₹3999</p>
-      <button onclick="addToCart('Monster Rock Crawler', 3999)">Add to Cart</button>
-    </div>
-  </aside>
-  
 
   <div class="promo-banner">
     <p>Get 20% Off on all RC Cars this Summer! Limited Time Offer!</p>
