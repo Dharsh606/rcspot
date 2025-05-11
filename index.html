@@ -225,15 +225,85 @@
       object-fit: cover;
       display: block;
     }
+    
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+     <!-- Google Font for Clean UI -->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
+     body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    /* Fullscreen video container */
+    .intro-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .intro-section video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Overlay text or logo on intro (if needed) */
+    .intro-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+      z-index: 2;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Fade out transition effect */
+    .fade-out {
+      animation: fadeOut 2s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* Main section after intro */
+    .main-content {
+      padding: 4rem 2rem;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Responsive content */
+    @media (max-width: 768px) {
+      .intro-overlay {
+        font-size: 1.5rem;
+      }
+
+      .main-content {
+        padding: 2rem 1rem;
+      }
+    }
   </style>
 </head>
-<body>
+</body>
   <!-- Video overlay -->
   <div id="video-overlay" class="video-overlay">
     <video id="intro-video" autoplay muted>
