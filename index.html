@@ -579,6 +579,27 @@
     }
   });
 </script>
+<script>
+  const video = document.querySelector('video');
+  const introSection = document.querySelector('.intro-section');
+  const mainContent = document.querySelector('.main-content');
+
+  video.addEventListener('ended', () => {
+    introSection.classList.add('fade-out');
+    setTimeout(() => {
+      introSection.style.display = 'none';
+      mainContent.style.display = 'block';
+    }, 2000); // match fade duration
+  });
+
+  // Optional: hide main content initially
+  document.addEventListener('DOMContentLoaded', () => {
+    if (mainContent) {
+      mainContent.style.display = 'none';
+    }
+  });
+</script>
+
 
 </body>
 </html>
