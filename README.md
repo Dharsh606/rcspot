@@ -28,8 +28,6 @@
 ![RC Spot Home](./documents/projectRC6.png)  
 
 
-*(Save your screenshots inside an `assets/` folder and update the file names above.)*
-
 ---
 
 ## ✨ Features  
