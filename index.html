@@ -3,55 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RC SPOT</title>
+  <meta name="description" content="Premium RC Cars & Trucks - High-quality remote control vehicles at RC Spot. Fast delivery, warranty included." />
+  <title>RC SPOT - Premium Remote Control Cars & Trucks</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', 'Inter', sans-serif;
       background-color: #000;
       color: #fff;
       line-height: 1.6;
     }
     header {
-      background: #000;
-      padding: 2rem;
+      background: linear-gradient(180deg, #000 0%, #111 100%);
+      padding: 2.5rem 2rem;
       text-align: center;
-      border-bottom: 2px solid #e50914;
+      border-bottom: 3px solid #e50914;
+      box-shadow: 0 4px 10px rgba(229, 9, 20, 0.2);
+    }
+    header img {
+      max-height: 80px;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s;
+    }
+    header img:hover {
+      transform: scale(1.05);
     }
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 600;
-      font-family: 'Poppins', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin: 0.5rem 0 0;
+      font-size: 2.8rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
       color: #e50914;
+      text-shadow: 2px 2px 8px rgba(229, 9, 20, 0.3);
+      letter-spacing: 2px;
     }
     nav {
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      background-color: #111;
-      padding: 1rem 0;
-      border-bottom: 1px solid #444;
+      gap: 2.5rem;
+      background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #333;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
     nav a {
       color: #e50914;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      position: relative;
     }
     nav a:hover {
       color: #fff;
+      background: rgba(229, 9, 20, 0.1);
+      transform: translateY(-2px);
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #e50914;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 80%;
     }
     .section {
       display: none;
-      padding: 3rem 5%;
+      padding: 4rem 5%;
       animation: fadeIn 0.6s ease-in-out;
+      min-height: 70vh;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .section.active {
       display: block;
+    }
+    .section h2, .section h3 {
+      color: #e50914;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    .section h2::after, .section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #e50914, transparent);
+      border-radius: 2px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .card {
+      background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #e50914;
+      box-shadow: 0 12px 35px rgba(229, 9, 20, 0.3);
     }
     .products {
       display: grid;
@@ -60,70 +137,146 @@
       margin-top: 2rem;
     }
     .product {
-      background: #111;
-      border: 1px solid #e50914;
-      padding: 2rem;
-      border-radius: 12px;
+      background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+      border: 2px solid #333;
+      padding: 1.5rem;
+      border-radius: 16px;
       text-align: center;
-      transition: transform 0.3s ease;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+    .product::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    .product:hover::before {
+      left: 100%;
     }
     .product:hover {
-      transform: scale(1.03);
+      transform: translateY(-8px) scale(1.02);
+      border-color: #e50914;
+      box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
     }
     .product img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      transition: transform 0.4s;
+    }
+    .product:hover img {
+      transform: scale(1.05);
     }
     .product h2 {
       color: #fff;
       margin: 1rem 0 0.5rem;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 600;
     }
     .product p {
-      margin: 0.5rem 0;
-      font-size: 1rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 1.3rem;
       color: #e50914;
+      font-weight: 700;
     }
     .product button {
-      background: #e50914;
+      background: linear-gradient(135deg, #e50914, #ff3b3b);
       color: #fff;
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 2rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(229, 9, 20, 0.3);
+      width: 100%;
+    }
+    .product button:hover {
+      background: linear-gradient(135deg, #ff3b3b, #e50914);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(229, 9, 20, 0.5);
+    }
+    .product button:active {
+      transform: translateY(0);
     }
     .cart-button {
       position: fixed;
       top: 1rem;
       right: 1rem;
-      background: #e50914;
+      background: linear-gradient(135deg, #e50914, #ff3b3b);
       color: #fff;
       border: none;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
       font-weight: bold;
       cursor: pointer;
       z-index: 1000;
+      box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+    .cart-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
     }
     .cart {
       position: fixed;
       top: 5rem;
       right: 1rem;
-      background: #222;
+      background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
       color: #fff;
-      border: 1px solid #e50914;
-      border-radius: 8px;
-      padding: 1rem;
-      width: 300px;
-      max-height: 400px;
+      border: 2px solid #e50914;
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 320px;
+      max-height: 450px;
       overflow-y: auto;
       display: none;
       z-index: 1000;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+    .cart h3 {
+      margin-top: 0;
+      color: #e50914;
+      border-bottom: 2px solid #333;
+      padding-bottom: 0.5rem;
     }
     .cart-item {
       margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      border-left: 3px solid #e50914;
+    }
+    .cart-item button {
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 0.3rem 0.6rem;
+      margin: 0.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    .cart-item button:hover {
+      background: #e50914;
+      border-color: #e50914;
+    }
+    .cart-item hr {
+      border: none;
+      border-top: 1px solid #333;
+      margin: 0.75rem 0;
     }
     .payment-icons {
       display: flex;
@@ -137,44 +290,304 @@
       filter: grayscale(1) brightness(2);
     }
     footer {
-      background: #000;
+      background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
       color: #888;
-      padding: 2rem;
+      padding: 3rem 2rem;
       text-align: center;
-      margin-top: 3rem;
-      border-top: 1px solid #e50914;
+      margin-top: 4rem;
+      border-top: 2px solid #e50914;
+    }
+    footer p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    /* FAQ Accordion Styles */
+    .faq-item {
+      background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+      border: 1px solid #333;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .faq-item:hover {
+      border-color: #e50914;
+    }
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(229, 9, 20, 0.05);
+      transition: all 0.3s;
+    }
+    .faq-question:hover {
+      background: rgba(229, 9, 20, 0.1);
+    }
+    .faq-question h4 {
+      margin: 0;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .faq-question i {
+      color: #e50914;
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 1.5rem;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 1.5rem;
+    }
+    .faq-answer p {
+      margin: 0;
+      color: #ccc;
+      line-height: 1.8;
+    }
+    /* Contact Cards */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .contact-card {
+      background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+      border: 2px solid #333;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    .contact-card:hover::before {
+      left: 100%;
+    }
+    .contact-card:hover {
+      transform: translateY(-8px);
+      border-color: #e50914;
+      box-shadow: 0 12px 35px rgba(229, 9, 20, 0.4);
+    }
+    .contact-card i {
+      font-size: 3rem;
+      color: #e50914;
+      margin-bottom: 1rem;
+    }
+    .contact-card h4 {
+      color: #fff;
+      font-size: 1.3rem;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+    .contact-card p, .contact-card a {
+      color: #ccc;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-card a:hover {
+      color: #e50914;
+    }
+    /* Testimonial Cards */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .testimonial-card {
+      background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+      border: 2px solid #333;
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.4s;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 5rem;
+      color: #e50914;
+      opacity: 0.3;
+      font-family: serif;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      border-color: #e50914;
+      box-shadow: 0 12px 35px rgba(229, 9, 20, 0.3);
+    }
+    .testimonial-text {
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      color: #e50914;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: right;
+    }
+    .testimonial-rating {
+      color: #ffd700;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    /* Order Summary Styles */
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      border-left: 3px solid #e50914;
+    }
+    .order-item-name {
+      color: #fff;
+      font-weight: 600;
+    }
+    .order-item-price {
+      color: #e50914;
+      font-weight: 700;
+    }
+    .order-total {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .order-total-label {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    .order-total-amount {
+      color: #e50914;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    /* Invoice Styles */
+    .invoice-success {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .invoice-success i {
+      font-size: 5rem;
+      color: #4caf50;
+      margin-bottom: 1rem;
+      animation: scaleIn 0.5s ease;
+    }
+    @keyframes scaleIn {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    .invoice-details {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
     }
     .payment-section {
-      background: #111;
-      padding: 2rem;
+      background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+      padding: 3rem;
       margin: 2rem auto;
-      max-width: 600px;
-      border-radius: 12px;
+      max-width: 700px;
+      border-radius: 20px;
+      border: 2px solid #333;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
     .payment-section h3 {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       color: #e50914;
+      font-size: 2rem;
+      font-weight: 700;
     }
     .payment-section form {
       display: flex;
       flex-direction: column;
+      gap: 1.25rem;
+    }
+    .payment-section input, .payment-section select {
+      padding: 1rem;
+      border-radius: 10px;
+      border: 2px solid #333;
+      font-size: 1rem;
+      background: #0a0a0a;
+      color: #fff;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .payment-section input:focus, .payment-section select:focus {
+      outline: none;
+      border-color: #e50914;
+      box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+    }
+    .payment-section input::placeholder {
+      color: #666;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-group label {
+      color: #e50914;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
-    .payment-section input {
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-    }
     .payment-section button {
-      background: #e50914;
+      background: linear-gradient(135deg, #e50914, #ff3b3b);
       color: #fff;
-      padding: 0.75rem;
+      padding: 0.9rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(229, 9, 20, 0.3);
+    }
+    .payment-section button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(229, 9, 20, 0.5);
     }
     a {
       color: #e50914;
@@ -184,17 +597,47 @@
       top: 50%;
       right: 0;
       transform: translateY(-50%);
-      width: 280px;
-      background: linear-gradient(45deg, #e50914, #ff3b3b);
+      width: 300px;
+      background: linear-gradient(135deg, #e50914, #ff3b3b, #ff6b6b);
       color: #fff;
-      padding: 1rem;
+      padding: 1.5rem;
       border-radius: 12px 0 0 12px;
-      box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.5);
+      box-shadow: -4px 4px 20px rgba(229, 9, 20, 0.4);
       font-size: 1rem;
-      font-weight: bold;
+      font-weight: 600;
       animation: slideInRight 0.6s ease-in-out;
       z-index: 1000;
       text-align: center;
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
+    .promo-banner:hover {
+      transform: translateY(-50%) translateX(-5px);
+      box-shadow: -6px 6px 25px rgba(229, 9, 20, 0.6);
+    }
+    .promo-banner.hide {
+      animation: slideOutRight 0.5s ease-in-out forwards;
+    }
+    .promo-banner .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .promo-banner .close-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
     @keyframes slideInRight {
       from {
@@ -204,8 +647,19 @@
       to {
         transform: translateY(-50%);
         opacity: 1;
-   }
-  }
+      }
+    }
+    @keyframes slideOutRight {
+      from {
+        transform: translateY(-50%);
+        opacity: 1;
+      }
+      to {
+        transform: translate(100%, -50%);
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
     .video-overlay {
       position: fixed;
       top: 0;
@@ -231,44 +685,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-     <!-- Google Font for Clean UI -->
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f7fa;
-      color: #333;
-    }
-
-    /* Fullscreen video container */
-    .intro-section {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .intro-section video {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    /* Overlay text or logo on intro (if needed) */
-    .intro-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 2.5rem;
-      text-align: center;
-      z-index: 2;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-    }
 
     /* Fade out transition effect */
     .fade-out {
@@ -279,31 +695,58 @@
       to { opacity: 0; visibility: hidden; }
     }
 
-    /* Main section after intro */
-    .main-content {
-      padding: 4rem 2rem;
-      text-align: center;
-      animation: fadeIn 2s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     /* Responsive content */
     @media (max-width: 768px) {
-      .intro-overlay {
-        font-size: 1.5rem;
+      header h1 {
+        font-size: 2rem;
       }
-
-      .main-content {
-        padding: 2rem 1rem;
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+      .promo-banner {
+        width: 220px;
+        font-size: 0.85rem;
+        padding: 1rem;
+      }
+      .cart {
+        width: 280px;
+        right: 0.5rem;
+        top: 4rem;
+      }
+      .cart-button {
+        right: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      .section {
+        padding: 2rem 3%;
+      }
+      .section h2, .section h3 {
+        font-size: 2rem;
+      }
+      .contact-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .payment-section {
+        padding: 2rem 1.5rem;
       }
     }
   </style>
 </head>
-</body>
+<body>
   <!-- Video overlay -->
   <div id="video-overlay" class="video-overlay">
     <video id="intro-video" autoplay muted>
@@ -313,7 +756,7 @@
   </div>
 
   <header>
-    <a href="#products"><img src="images/logo.png" alt="RC Spot Logo"></a>
+    <a href="#products"><img src="images/logo.png" alt="RC Spot - Premium Remote Control Cars and Trucks"></a>
     <h1>RC Spot</h1>
   </header>
 
@@ -335,8 +778,10 @@
   </nav>
 
   <div class="section active" id="products">
-    <h2>Our RC Cars & Trucks</h2>
-    <div class="products">
+    <div class="container">
+      <h2><i class="fas fa-car"></i> Our Premium RC Cars & Trucks</h2>
+      <p style="text-align: center; color: #ccc; margin-bottom: 3rem; font-size: 1.1rem;">Discover our collection of high-performance remote control vehicles</p>
+      <div class="products">
       <div class="product"><img src="images/product1.jpeg" alt="RC Car 1"><h2>Monster Rock Crawler</h2><p>₹3999</p><button onclick="addToCart('Monster Rock Crawler', 3999)">Add to Cart</button></div>
       <div class="product"><img src="images/product2.jpeg" alt="RC Car 2"><h2>Thunder Bolt Racer</h2><p>₹4299</p><button onclick="addToCart('Thunder Bolt Racer', 4299)">Add to Cart</button></div>
       <div class="product"><img src="images/product3.jpeg" alt="RC Car 3"><h2>Bezgar Truggy</h2><p>₹6499</p><button onclick="addToCart('Bezgar Truggy', 6499)">Add to Cart</button></div>
@@ -344,56 +789,238 @@
       <div class="product"><img src="images/product5.jpeg" alt="RC Car 5"><h2>6-Wheel Climber Orange</h2><p>₹5299</p><button onclick="addToCart('6-Wheel Climber Orange', 5299)">Add to Cart</button></div>
       <div class="product"><img src="images/product6.jpeg" alt="RC Car 6"><h2>Offroad Pickup Truck</h2><p>₹4899</p><button onclick="addToCart('Offroad Pickup Truck', 4899)">Add to Cart</button></div>
       <div class="product"><img src="images/product7.jpeg" alt="RC Car 7"><h2>Spirit Speed Monster</h2><p>₹6999</p><button onclick="addToCart('Spirit Speed Monster', 6999)">Add to Cart</button></div>
+      </div>
     </div>
   </div>
 
-  <div class="promo-banner">
-    <p>Get 20% Off on all RC Cars this Summer! Limited Time Offer!</p>
+  <div class="promo-banner" id="promo-banner">
+    <button class="close-btn" onclick="hidePromoBanner()" aria-label="Close">×</button>
+    <p>🎉 Get 20% Off on all RC Cars this Summer! Limited Time Offer! 🎉</p>
   </div>
 
   <div class="section" id="faq">
-    <h3>Frequently Asked Questions</h3>
-    <p><strong>Q:</strong> What is the delivery time?</p>
-    <p><strong>A:</strong> Delivery takes 3–7 business days.</p>
-    <p><strong>Q:</strong> Do you provide warranty?</p>
-    <p><strong>A:</strong> Yes, 6-month warranty for manufacturing defects.</p>
+    <div class="container">
+      <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h4><i class="fas fa-shipping-fast"></i> What is the delivery time?</h4>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>We offer fast and reliable delivery! Standard delivery takes 3-7 business days. Express delivery (2-3 business days) is available for an additional charge. All orders are processed within 24 hours of confirmation.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h4><i class="fas fa-shield-alt"></i> Do you provide warranty?</h4>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! All our RC cars come with a comprehensive 6-month warranty covering manufacturing defects. We also offer extended warranty options. Our customer support team is always ready to assist with any issues.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h4><i class="fas fa-undo"></i> What is your return policy?</h4>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>We offer a 30-day return policy for unused items in original packaging. Items must be in perfect condition. Return shipping costs are the responsibility of the customer unless the item is defective.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h4><i class="fas fa-battery-full"></i> What batteries do the RC cars use?</h4>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Most of our RC cars come with rechargeable lithium-ion batteries included. Charging time is typically 2-3 hours. Battery life varies by model but generally provides 15-30 minutes of continuous use.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h4><i class="fas fa-tools"></i> Do you provide spare parts?</h4>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! We stock a wide range of spare parts for all our models. Common parts like wheels, batteries, and controllers are readily available. Contact our support team for specific part inquiries.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="section" id="help">
-    <h3>Need Help?</h3>
-    <p>Email us at: <a href="mailto:gurudhaya2536@gmail.com">gurudhaya2536@gmail.com</a></p>
-    <p>Call us: <a href="tel:6352417891">+91 6352417891</a></p>
-    <p>For product or order queries, contact us via phone or email above.</p>
+    <div class="container">
+      <h2><i class="fas fa-headset"></i> Need Help? We're Here For You</h2>
+      <p style="text-align: center; color: #ccc; margin-bottom: 3rem; font-size: 1.1rem;">Our dedicated support team is available to assist you with any questions or concerns</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <h4>Email Support</h4>
+          <p>Get in touch via email</p>
+          <a href="mailto:gurudhaya2536@gmail.com">gurudhaya2536@gmail.com</a>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Response within 24 hours</p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-phone-alt"></i>
+          <h4>Phone Support</h4>
+          <p>Call us directly</p>
+          <a href="tel:6352417891">+91 6352417891</a>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Mon-Sat: 9 AM - 8 PM IST</p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-comments"></i>
+          <h4>Live Chat</h4>
+          <p>Chat with our team</p>
+          <a href="#" onclick="alert('Live chat coming soon!'); return false;">Start Chat</a>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Available 24/7</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 3rem; text-align: center;">
+        <h4 style="color: #e50914; margin-bottom: 1rem;"><i class="fas fa-info-circle"></i> Support Information</h4>
+        <p style="color: #ccc; line-height: 1.8;">For product inquiries, order tracking, warranty claims, or technical support, our team is ready to help. We pride ourselves on providing exceptional customer service and ensuring your complete satisfaction with every purchase.</p>
+      </div>
+    </div>
   </div>
 
   <div class="section" id="comments">
-    <h3>User Comments</h3>
-    <p>“Amazing cars, top speed is thrilling!” – Rahul</p>
-    <p>“Good packaging and fast delivery.” – Neha</p>
+    <div class="container">
+      <h2><i class="fas fa-star"></i> What Our Customers Say</h2>
+      <p style="text-align: center; color: #ccc; margin-bottom: 3rem; font-size: 1.1rem;">Real reviews from satisfied customers</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Amazing cars! The top speed is absolutely thrilling. My kids love it and the build quality is exceptional. Highly recommend!</p>
+          <p class="testimonial-author">– Rahul Sharma</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Excellent packaging and super fast delivery! The RC car arrived in perfect condition. Customer service was responsive and helpful throughout.</p>
+          <p class="testimonial-author">– Neha Patel</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Best purchase I've made! The battery life is impressive and the controls are very responsive. Great value for money!</p>
+          <p class="testimonial-author">– Arjun Mehta</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Outstanding quality! The car handles rough terrain beautifully. The warranty gives me peace of mind. Will definitely order again!</p>
+          <p class="testimonial-author">– Priya Reddy</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Fast shipping and the product exceeded my expectations! The design is sleek and the performance is top-notch. Highly satisfied!</p>
+          <p class="testimonial-author">– Vikram Singh</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Perfect for beginners and experts alike! Easy to control, durable build, and amazing customer support. This is my third purchase from RC Spot!</p>
+          <p class="testimonial-author">– Ananya Das</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="section" id="payment">
-    <div class="payment-section">
-      <h3>Payment Details</h3>
-      <form onsubmit="alert('Sample payment submitted!'); return false;">
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email Address" required />
-        <input type="text" placeholder="Card Number" required />
-        <input type="text" placeholder="Expiry Date (MM/YY)" required />
-        <input type="text" placeholder="CVV" required />
-        <button type="submit">Pay ₹<span id="cart-total">0</span></button>
-      </form>
-    </div>
-    <div class="payment-icons">
-      <img src="images/gpay.png" alt="gpay">
-      <img src="images/phonepe.png" alt="phonepe">
-      <img src="images/card.png" alt="Card">
-      <img src="images/paypal.png" alt="paypal">
+    <div class="container">
+      <h2><i class="fas fa-credit-card"></i> Secure Payment</h2>
+      <div class="payment-section">
+        <h3>Payment Information</h3>
+        <form id="payment-form" onsubmit="handlePayment(event)">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" placeholder="Enter your full name" required />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email Address</label>
+            <input type="email" placeholder="your.email@example.com" required />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> Phone Number</label>
+            <input type="tel" placeholder="+91 1234567890" required />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> Street Address</label>
+            <input type="text" placeholder="House/Flat No., Street Name" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-city"></i> City</label>
+              <input type="text" placeholder="City" required />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-map"></i> State</label>
+              <input type="text" placeholder="State" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-mail-bulk"></i> Postal Code</label>
+              <input type="text" placeholder="PIN Code" required />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-globe"></i> Country</label>
+              <input type="text" placeholder="Country" value="India" required />
+            </div>
+          </div>
+          <hr style="border: none; border-top: 2px solid #333; margin: 2rem 0;">
+          <h4 style="color: #e50914; margin-bottom: 1rem;"><i class="fas fa-credit-card"></i> Card Details</h4>
+          <div class="form-group">
+            <label><i class="fas fa-credit-card"></i> Card Number</label>
+            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-calendar"></i> Expiry Date</label>
+              <input type="text" placeholder="MM/YY" maxlength="5" required />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-lock"></i> CVV</label>
+              <input type="text" placeholder="123" maxlength="3" required />
+            </div>
+          </div>
+          <div class="form-group" style="margin-top: 1.5rem;">
+            <button type="submit" style="width: 100%; padding: 1.2rem; font-size: 1.2rem;">
+              <i class="fas fa-lock"></i> Pay Securely ₹<span id="payment-total">0</span>
+            </button>
+          </div>
+          <p style="text-align: center; color: #888; font-size: 0.9rem; margin-top: 1rem;">
+            <i class="fas fa-shield-alt"></i> Your payment information is encrypted and secure
+          </p>
+        </form>
+      </div>
+      <div class="payment-icons" style="margin-top: 3rem;">
+        <img src="images/gpay.png" alt="Google Pay">
+        <img src="images/phonepe.png" alt="PhonePe">
+        <img src="images/card.png" alt="Credit/Debit Cards">
+        <img src="images/paypal.png" alt="PayPal">
+      </div>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2025 RC Spot | All Rights Reserved.</p>
+    <div class="container">
+      <p style="margin-bottom: 1rem;"><strong>RC Spot</strong> - Premium Remote Control Cars & Trucks</p>
+      <p style="font-size: 0.9rem; color: #666;">&copy; 2025 RC Spot. All Rights Reserved.</p>
+      <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem;">
+        <a href="#" onclick="showSection('faq'); return false;" style="color: #888; text-decoration: none; transition: color 0.3s;">FAQ</a>
+        <a href="#" onclick="showSection('help'); return false;" style="color: #888; text-decoration: none; transition: color 0.3s;">Support</a>
+        <a href="#" onclick="showSection('comments'); return false;" style="color: #888; text-decoration: none; transition: color 0.3s;">Reviews</a>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -470,6 +1097,22 @@
       cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
     }
 
+    // Update payment form total when cart changes
+    function updatePaymentTotal() {
+      const paymentTotal = document.getElementById('payment-total');
+      if (paymentTotal) {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        paymentTotal.textContent = total;
+      }
+    }
+
+    // Enhanced updateCartUI to also update payment total
+    const originalUpdateCartUI = updateCartUI;
+    updateCartUI = function() {
+      originalUpdateCartUI();
+      updatePaymentTotal();
+    };
+
     // Initial render of the cart
     updateCartUI();
 
@@ -477,35 +1120,83 @@
     const video = document.getElementById('intro-video');
     const videoOverlay = document.getElementById('video-overlay');
 
-    video.addEventListener('ended', function() {
-      videoOverlay.style.display = 'none';
-    });
-
-    // Show the section based on the clicked nav link
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+    if (video && videoOverlay) {
+      video.addEventListener('ended', function() {
+        videoOverlay.style.display = 'none';
+      });
+      
+      // Handle video load errors
+      video.addEventListener('error', function() {
+        videoOverlay.style.display = 'none';
+      });
     }
+
+    // Auto-hide promo banner after 5 seconds
+    function hidePromoBanner() {
+      const promoBanner = document.getElementById('promo-banner');
+      if (promoBanner) {
+        promoBanner.classList.add('hide');
+        setTimeout(() => {
+          promoBanner.style.display = 'none';
+        }, 500);
+      }
+    }
+
+    // Auto-hide promo banner after 5 seconds on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(hidePromoBanner, 5000);
+    });
   </script>
   <!-- 🔻 START: Extra Checkout Sections -->
 <div class="section" id="checkout" style="display:none;">
-  <div class="payment-section">
-    <h3>Order Summary</h3>
-    <div id="order-summary"></div>
-    <p><strong>Total: ₹<span id="summary-total">0</span></strong></p>
-    <button onclick="showSection('payment')">Continue to Payment</button>
+  <div class="container">
+    <h2><i class="fas fa-shopping-bag"></i> Order Summary</h2>
+    <div class="payment-section">
+      <h3>Review Your Order</h3>
+      <div id="order-summary" style="margin: 2rem 0;"></div>
+      <div class="order-total">
+        <span class="order-total-label">Total Amount:</span>
+        <span class="order-total-amount">₹<span id="summary-total">0</span></span>
+      </div>
+      <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+        <button onclick="showSection('products')" style="flex: 1; background: #333; padding: 1rem;">
+          <i class="fas fa-arrow-left"></i> Continue Shopping
+        </button>
+        <button onclick="showSection('payment')" style="flex: 2; padding: 1rem;">
+          <i class="fas fa-credit-card"></i> Proceed to Payment
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="section" id="invoice" style="display:none;">
-  <div class="payment-section">
-    <h3>Order Confirmed ✅</h3>
-    <p>Thank you for shopping at RC Spot!</p>
-    <div id="invoice-details"></div>
-    <p><strong>Total Paid: ₹<span id="invoice-total">0</span></strong></p>
-    <p>You will receive an email with your invoice shortly.</p>
-    <button onclick="location.reload()">Return to Home</button>
+  <div class="container">
+    <div class="payment-section">
+      <div class="invoice-success">
+        <i class="fas fa-check-circle"></i>
+        <h2 style="color: #4caf50; margin: 1rem 0;">Order Confirmed!</h2>
+        <p style="color: #ccc; font-size: 1.1rem; margin-bottom: 2rem;">Thank you for shopping at RC Spot! Your order has been successfully placed.</p>
+      </div>
+      <div class="invoice-details">
+        <h4 style="color: #e50914; margin-bottom: 1.5rem;"><i class="fas fa-receipt"></i> Order Details</h4>
+        <div id="invoice-details"></div>
+        <div class="order-total" style="margin-top: 2rem;">
+          <span class="order-total-label">Total Paid:</span>
+          <span class="order-total-amount">₹<span id="invoice-total">0</span></span>
+        </div>
+      </div>
+      <div style="background: rgba(76, 175, 80, 0.1); border: 2px solid #4caf50; border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: center;">
+        <p style="color: #4caf50; margin: 0;">
+          <i class="fas fa-envelope"></i> A confirmation email with your invoice and tracking details has been sent to your email address.
+        </p>
+      </div>
+      <div style="margin-top: 2rem; text-align: center;">
+        <button onclick="location.reload()" style="padding: 1rem 3rem; font-size: 1.1rem;">
+          <i class="fas fa-home"></i> Return to Home
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -523,19 +1214,33 @@
 
 <!-- 🔧 START: JS Script -->
 <script>
-  // Cart array must already exist
+  // Unified showSection function - handles both class-based and display-based sections
   function showSection(id) {
-    document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
+    // Hide all sections using both methods
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active');
+      sec.style.display = 'none';
+    });
+    
+    // Show the selected section
+    const targetSection = document.getElementById(id);
+    if (targetSection) {
+      targetSection.classList.add('active');
+      targetSection.style.display = 'block';
+    }
 
     // Show shipping form when in payment section
     if (id === 'payment') {
       const form = document.getElementById('shipping-form');
       const paymentSection = document.querySelector('#payment .payment-section');
-      if (!paymentSection.contains(form)) {
-        paymentSection.insertBefore(form, paymentSection.querySelector('form') || paymentSection.lastChild);
+      if (form && paymentSection) {
+        if (!paymentSection.contains(form)) {
+          paymentSection.insertBefore(form, paymentSection.querySelector('form') || paymentSection.lastChild);
+        }
+        form.style.display = 'flex';
       }
-      form.style.display = 'flex';
+      // Update payment total when showing payment section
+      updatePaymentTotal();
     }
   }
 
@@ -544,11 +1249,29 @@
     const totalDisplay = document.getElementById('summary-total');
     let total = 0;
     summary.innerHTML = '';
+    
+    if (cart.length === 0) {
+      summary.innerHTML = '<p style="text-align: center; color: #888; padding: 2rem;">Your cart is empty. Add some products first!</p>';
+      totalDisplay.textContent = 0;
+      showSection('checkout');
+      return;
+    }
+    
     cart.forEach(item => {
       const subtotal = item.price * item.qty;
       total += subtotal;
-      summary.innerHTML += `<p>${item.name} × ${item.qty} = ₹${subtotal}</p>`;
+      const orderItem = document.createElement('div');
+      orderItem.className = 'order-item';
+      orderItem.innerHTML = `
+        <div>
+          <div class="order-item-name">${item.name}</div>
+          <div style="color: #888; font-size: 0.9rem; margin-top: 0.25rem;">Quantity: ${item.qty} × ₹${item.price}</div>
+        </div>
+        <div class="order-item-price">₹${subtotal}</div>
+      `;
+      summary.appendChild(orderItem);
     });
+    
     totalDisplay.textContent = total;
     showSection('checkout');
   }
@@ -558,14 +1281,50 @@
     const invoiceTotal = document.getElementById('invoice-total');
     let total = 0;
     invoiceBox.innerHTML = '';
+    
     cart.forEach(item => {
       const subtotal = item.price * item.qty;
       total += subtotal;
-      invoiceBox.innerHTML += `<p>${item.name} × ${item.qty} = ₹${subtotal}</p>`;
+      const orderItem = document.createElement('div');
+      orderItem.className = 'order-item';
+      orderItem.innerHTML = `
+        <div>
+          <div class="order-item-name">${item.name}</div>
+          <div style="color: #888; font-size: 0.9rem; margin-top: 0.25rem;">Quantity: ${item.qty} × ₹${item.price}</div>
+        </div>
+        <div class="order-item-price">₹${subtotal}</div>
+      `;
+      invoiceBox.appendChild(orderItem);
     });
+    
     invoiceTotal.textContent = total;
     sessionStorage.clear();
     showSection('invoice');
+  }
+
+  function handlePayment(event) {
+    event.preventDefault();
+    if (cart.length === 0) {
+      alert('Your cart is empty! Please add items before proceeding to payment.');
+      showSection('products');
+      return;
+    }
+    showInvoice();
+  }
+
+  function toggleFaq(element) {
+    const faqItem = element.closest('.faq-item');
+    const isActive = faqItem.classList.contains('active');
+    
+    // Close all FAQ items
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    // Open clicked item if it wasn't active
+    if (!isActive) {
+      faqItem.classList.add('active');
+    }
   }
 
   // Bind form submit to invoice
@@ -576,26 +1335,6 @@
         e.preventDefault();
         showInvoice();
       });
-    }
-  });
-</script>
-<script>
-  const video = document.querySelector('video');
-  const introSection = document.querySelector('.intro-section');
-  const mainContent = document.querySelector('.main-content');
-
-  video.addEventListener('ended', () => {
-    introSection.classList.add('fade-out');
-    setTimeout(() => {
-      introSection.style.display = 'none';
-      mainContent.style.display = 'block';
-    }, 2000); // match fade duration
-  });
-
-  // Optional: hide main content initially
-  document.addEventListener('DOMContentLoaded', () => {
-    if (mainContent) {
-      mainContent.style.display = 'none';
     }
   });
 </script>
